@@ -4,12 +4,10 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
-  Platform
+  TouchableOpacity
 } from "react-native";
 import { CATEGORIES } from "../data/data";
 import CategorySpeciesScreen from "./CategorySpeciesScreen";
-import Colors from "../constants/Colors";
 
 const CategoriesScreen = props => {
   const renderGridItem = itemData => {
@@ -43,11 +41,7 @@ const CategoriesScreen = props => {
 };
 
 CategoriesScreen.navigationOptions = {
-  headerTitle: "Dinosaurs by Region",
-  headerStyle: {
-    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white"
-  },
-  headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor
+  headerTitle: "Dinosaurs by Region"
 };
 
 export default CategoriesScreen;
