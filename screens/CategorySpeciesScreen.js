@@ -1,15 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const FavouritesScreen = props => {
+const CategorySpeciesScreen = props => {
   return (
     <View style={styles.screen}>
-      <Text>The Favourites Screen</Text>
+      <Text>The Category Species Screen</Text>
     </View>
   );
 };
 
-export default FavouritesScreen;
+export default CategorySpeciesScreen;
 
 const styles = StyleSheet.create({
   screen: {
