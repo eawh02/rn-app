@@ -1,29 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
-import { CATEGORIES } from "../data/data";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { CATEGORIES, DINOSAURS } from "../data/data";
 
 const CategorySpeciesScreen = props => {
+  const renderDinosaur = itemData => {
+    return (
+      <View>
+        <Text>{itemData.item.title}</Text>
+      </View>
+    );
+  };
+
   const categoryId = props.navigation.getParam("categoryId");
 
-  const selectedCategory = CATEGORIES.find(
-    category => category.id === categoryId
+  const displayedDinosaurs = DINOSAURS.filter(
+    dinosaur => dinosaur.categoryIds.indexOf(categoryId) >= 0
   );
 
   return (
     <View style={styles.screen}>
-      <Text>The Category Species Screen</Text>
-      <Text>{selectedCategory.title}</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => {
-          props.navigation.navigate("SpeciesDetail");
-        }}
-      />
-      <Button
-        title="Go Back"
-        onPress={() => {
-          props.navigation.goBack();
-        }}
+      <FlatList
+        data={displayedDinosaurs}
+        keyExtractor={(item, index) => item.id}
+        renderItem={renderDinosaur}
       />
     </View>
   );
