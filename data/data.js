@@ -8,6 +8,5 @@ export const CATEGORIES = [
   new Category("c5", "Madagascar Dinosaurs", "#368dff"),
   new Category("c6", "Asian Dinosaurs", "#41d95d"),
   new Category("c7", "Indian Dinosaurs", "#9eecff"),
-  new Category("c8", "Australian Dinosaurs", "#b9ffb0"),
-  new Category("c9", "Antarctica Dinosaurs", "#ffc7ff")
+  new Category("c8", "Australian Dinosaurs", "#b9ffb0")
 ];
