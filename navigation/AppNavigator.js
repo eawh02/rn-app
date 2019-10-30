@@ -1,7 +1,5 @@
-import {
-  createStackNavigator,
-  createAppContainer
-} from "react-navigation-stack";
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategorySpeciesScreen from "../screens/CategorySpeciesScreen";
 import SpeciesDetailScreen from "../screens/SpeciesDetailScreen";
