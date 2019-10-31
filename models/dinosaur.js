@@ -4,6 +4,7 @@ class Dinosaur {
     categoryIds,
     title,
     imageUrl,
+    description,
     isCretaceousDinosaurs,
     isJurassicDinosaurs,
     isTriassicDinosaurs
