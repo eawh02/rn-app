@@ -30,7 +30,8 @@ SpeciesDetailsScreen.navigationOptions = navigationData => {
     dinosaur => dinosaur.id === dinosaurId
   );
   return {
-    headerTitle: selectedDinosaur.title
+    headerTitle: selectedDinosaur.title,
+    headerRight: <Text>FAV!</Text>
   };
 };
 
