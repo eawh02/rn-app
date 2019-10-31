@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import {
+  ScrollView,
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  Button
+} from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { DINOSAURS } from "../data/data";
 import { CustomHeaderButton } from "../components/HeaderButton";
@@ -14,15 +21,13 @@ const SpeciesDetailsScreen = props => {
   console.log("selected dinosaur", selectedDinosaur);
 
   return (
-    <View style={styles.screen}>
-      <Text>{selectedDinosaur.title}</Text>
-      <Button
-        title="Go Back to Categories"
-        onPress={() => {
-          props.navigation.popToTop();
-        }}
-      />
-    </View>
+    <ScrollView>
+      <Image source={{ uri: selectedDinosaur.imageUrl }} style={styles.image} />
+      <View>
+        <Text style={styles.title}>Facts</Text>
+        <Text style={styles.description}>{selectedDinosaur.description}</Text>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -48,10 +53,19 @@ SpeciesDetailsScreen.navigationOptions = navigationData => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+  image: {
+    width: "100%",
+    height: 200
+  },
+  title: {
+    fontFamily: "open-sans-bold",
+    fontSize: 22,
+    textAlign: "center"
+  },
+  description: {
+    margin: 30,
+    padding: 10,
+    fontFamily: "open-sans"
   }
 });
 

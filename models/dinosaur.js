@@ -13,6 +13,7 @@ class Dinosaur {
     this.categoryIds = categoryIds;
     this.title = title;
     this.imageUrl = imageUrl;
+    this.description = description;
     this.isCretaceousDinosaurs = isCretaceousDinosaurs;
     this.isJurassicDinosaurs = isJurassicDinosaurs;
     this.isTriassicDinosaurs = isTriassicDinosaurs;
