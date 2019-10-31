@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { Platform } from "react-native";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategorySpeciesScreen from "../screens/CategorySpeciesScreen";
@@ -29,34 +30,56 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const DinoFavTabNavigator = createBottomTabNavigator(
+const FavNavigator = createStackNavigator(
   {
-    Dinosaurs: {
-      screen: AppNavigator,
-      navigationOptions: {
-        tabBarIcon: tabInfo => {
-          return (
-            <Ionicons name="ios-paw" size={25} color={tabInfo.tintColor} />
-          );
-        }
-      }
-    },
-    Favourites: {
-      screen: FavouritesScreen,
-      navigationOptions: {
-        tabBarIcon: tabInfo => {
-          return (
-            <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />
-          );
-        }
-      }
-    }
+    Favourites: FavouritesScreen,
+    SpeciesDetail: SpeciesDetailScreen
   },
   {
-    tabBarOptions: {
-      activeTintColor: Colors.accentColor
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor:
+          Platform.OS === "android" ? Colors.primaryColor : "white"
+      },
+      headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor
     }
   }
 );
+
+const tabScreenConfig = {
+  Dinosaurs: {
+    screen: AppNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return <Ionicons name="ios-paw" size={25} color={tabInfo.tintColor} />;
+      },
+      tabBarColor: Colors.primaryColor
+    }
+  },
+  Favourites: {
+    screen: FavNavigator,
+    navigationOptions: {
+      tabBarIcon: tabInfo => {
+        return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
+      },
+      tabBarColor: Colors.accentColor
+    }
+  }
+};
+
+const DinoFavTabNavigator =
+  Platform.OS === "android"
+    ? createMaterialBottomTabNavigator(tabScreenConfig, {
+        activeTintColor: "white",
+        shifting: false,
+        barStyle: {
+          backgroundColor: Colors.primaryColor
+        }
+      })
+    : createBottomTabNavigator(tabScreenConfig, {
+        tabBarOptions: {
+          activeTintColor: Colors.accentColor
+        }
+      });
 
 export default createAppContainer(DinoFavTabNavigator);

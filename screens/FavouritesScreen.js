@@ -9,6 +9,10 @@ const FavouritesScreen = props => {
   );
 };
 
+FavouritesScreen.navigationOptions = {
+  headerTitle: "Your Favourites"
+};
+
 export default FavouritesScreen;
 
 const styles = StyleSheet.create({
