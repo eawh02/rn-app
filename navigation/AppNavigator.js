@@ -1,3 +1,4 @@
+import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -7,6 +8,7 @@ import CategorySpeciesScreen from "../screens/CategorySpeciesScreen";
 import SpeciesDetailScreen from "../screens/SpeciesDetailScreen";
 import Colors from "../constants/Colors";
 import FavouritesScreen from "../screens/FavouritesScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 const AppNavigator = createStackNavigator(
   {
@@ -27,9 +29,34 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const DinoFavTabNavigator = createBottomTabNavigator({
-  Dinosaurs: AppNavigator,
-  Favourites: FavouritesScreen
-});
+const DinoFavTabNavigator = createBottomTabNavigator(
+  {
+    Dinosaurs: {
+      screen: AppNavigator,
+      navigationOptions: {
+        tabBarIcon: tabInfo => {
+          return (
+            <Ionicons name="ios-paw" size={25} color={tabInfo.tintColor} />
+          );
+        }
+      }
+    },
+    Favourites: {
+      screen: FavouritesScreen,
+      navigationOptions: {
+        tabBarIcon: tabInfo => {
+          return (
+            <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />
+          );
+        }
+      }
+    }
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: Colors.accentColor
+    }
+  }
+);
 
 export default createAppContainer(DinoFavTabNavigator);

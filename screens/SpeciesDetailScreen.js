@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { Ionicons } from "@expo/vector-icons";
 import { DINOSAURS } from "../data/data";
 import { CustomHeaderButton } from "../components/HeaderButton";
 
