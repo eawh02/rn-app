@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { Ionicons } from "@expo/vector-icons";
 import { DINOSAURS } from "../data/data";
+import { CustomHeaderButton } from "../components/HeaderButton";
 
 const SpeciesDetailsScreen = props => {
   const dinosaurId = props.navigation.getParam("dinosaurId");
@@ -31,7 +34,17 @@ SpeciesDetailsScreen.navigationOptions = navigationData => {
   );
   return {
     headerTitle: selectedDinosaur.title,
-    headerRight: <Text>FAV!</Text>
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Favourite"
+          iconName="ios-star"
+          onPress={() => {
+            console.log("mark as favourite!!");
+          }}
+        />
+      </HeaderButtons>
+    )
   };
 };
 
