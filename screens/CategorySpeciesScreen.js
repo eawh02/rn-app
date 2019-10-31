@@ -1,13 +1,24 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { CATEGORIES, DINOSAURS } from "../data/data";
+import DinosaurItem from "../components/DinosaurItem";
+import Dinosaur from "../models/dinosaur";
 
 const CategorySpeciesScreen = props => {
   const renderDinosaur = itemData => {
     return (
-      <View>
-        <Text>{itemData.item.title}</Text>
-      </View>
+      <DinosaurItem
+        title={itemData.item.title}
+        image={itemData.item.imageUrl}
+        onSelect={() => {
+          props.navigation.navigate({
+            routeName: "SpeciesDetail",
+            params: {
+              dinosaurId: itemData.item.id
+            }
+          });
+        }}
+      />
     );
   };
 
@@ -23,6 +34,7 @@ const CategorySpeciesScreen = props => {
         data={displayedDinosaurs}
         keyExtractor={(item, index) => item.id}
         renderItem={renderDinosaur}
+        style={{ width: "90%" }}
       />
     </View>
   );

@@ -1,10 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { DINOSAURS } from "../data/data";
 
 const SpeciesDetailsScreen = props => {
+  const dinosaurId = props.navigation.getParam("dinosaurId");
+
+  const selectedDinosaur = DINOSAURS.find(
+    dinosaur => dinosaur.id === dinosaurId
+  );
+
+  console.log("selected dinosaur", selectedDinosaur);
+
   return (
     <View style={styles.screen}>
-      <Text>The Species Details Screen</Text>
+      <Text>{selectedDinosaur.title}</Text>
       <Button
         title="Go Back to Categories"
         onPress={() => {
@@ -15,7 +24,15 @@ const SpeciesDetailsScreen = props => {
   );
 };
 
-export default SpeciesDetailsScreen;
+SpeciesDetailsScreen.navigationOptions = navigationData => {
+  const dinosaurId = navigationData.navigation.getParam("dinosaurId");
+  const selectedDinosaur = DINOSAURS.find(
+    dinosaur => dinosaur.id === dinosaurId
+  );
+  return {
+    headerTitle: selectedDinosaur.title
+  };
+};
 
 const styles = StyleSheet.create({
   screen: {
@@ -24,3 +41,5 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+export default SpeciesDetailsScreen;
